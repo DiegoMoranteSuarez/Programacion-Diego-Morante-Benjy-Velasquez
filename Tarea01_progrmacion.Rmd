@@ -1,0 +1,288 @@
+---
+title: "EJERCICIOS"
+author: "Morante_Suarez&Velasquez_Fernandez"
+date: "18/11/2021"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Parte 01
+## Calcula los valores numericos aproximados
+### 01 Calcula los valores numericos aproximados
+```{r}
+(0.3*0.15)/(0.3*0.15+0.2*0.8+0.5*0.12)
+(5^6)/factorial(6)*exp(-5)
+choose(20,7)*0.4^7*0.6^13
+```
+### 02 Realizar la siguiente suma
+```{r}
+m<-1:1000
+sum(m)
+((2^11)-1)/(2-1)
+```
+### 03 El vector grupo representa el grupo al que pertenece una serie de alumnos
+```{r}
+load(url("https://goo.gl/uDzU8v"))
+```
+```{r}
+"a.¿Cuantos elementos tiene?"
+length(grupo)
+```
+```{r}
+"b. ¿En que posiciones del vector esta la letra A"
+which(grupo=="A")
+```
+### 04 El vector nota representa la nota de un examen de los alumnos que estan en los grupos del vector grupo
+```{r}
+"a.¿Cuanto suman todas las notas?"
+sum(nota)
+```
+```{r}
+"b. ¿Cual es la media aritmetica de todas las notas?"
+mean(nota)
+```
+```{r}
+"c. ¿En que posiciones estan las notas mayores de 7.0?"
+which(nota>7.0)
+```
+```{r}
+"d. Visualiza las notas ordenadas de mayor a menor"
+sort(nota,decreasing=TRUE)
+```
+```{r}
+"e. ¿En que posicion esta la nota maxima?"
+which(nota==max(nota))
+```
+### 05 A partir de los vectores grupo y nota definidos
+```{r}
+"a.Suma las notas de los 10 primeros alumnos del vector"
+grupo_ben=data.frame(grupo,nota)
+sum(head(grupo_ben$nota,10))
+```
+```{r}
+"b.¿Cuantos alumnos hay del grupo C?"
+length(grupo[grupo=="C"])
+```
+```{r}
+"C.¿Cuantos alumnos han aprobado?"
+length(nota[nota>5])
+```
+```{r}
+"d.¿Cuantos alumnos del grupo B han aprobado?"
+approved<-which(grupo_ben$grupo=="B"&grupo_ben$nota>5)
+length(approved)
+```
+```{r}
+"e.¿Que porcentaje de alumnos del grupo C han aprobado?"
+which(grupo=="C"&nota>5)
+length(grupo=="C"&nota>5)
+length(which(grupo=="C"&nota>5))
+length(which(grupo_ben$grupo=="C"&grupo_ben$nota>5))/length(which(grupo_ben$grupo=="C"))
+```
+```{r}
+"f.¿De que grupos son la maxima y minima notas de toda la muestra?"
+which.max(grupo_ben$nota)
+grupo_ben$grupo[120]
+which.min(grupo_ben$nota)
+grupo_ben$grupo[142]
+```
+```{r}
+"g.Nota media de los alumnos de grupo A y B,juntos,considerando solo a los que han aprobado"
+which(grupo_ben$grupo=="A"&grupo_ben$nota>5)
+which(grupo_ben$grupo=="B"&grupo_ben$nota>5)
+notas_A<-nota[c(2,17,28,108)]
+notas_B<-nota[c(13,18,65,86,103,148,170,176,186,187)]
+notas_C<-nota[c(2,17,28,108,13,65,86,103,148,170,176,186,187)]
+mean(notas_C)
+```
+### 06 Calcula el percentil 66 de las notas de todos los alumnos, y también de los alumnos del grupo C.
+```{r}
+66*length(nota)/100
+nota_ordenada <- sort(nota)
+nota_ordenada -> nota
+nota_ordenada[126]      
+nota_ordenada[127]
+```
+### 07 Un alumno tiene una nota de 4.9. ¿Qué porcentaje, del total de alumnos, tiene una nota menor o igual que la suya? ¿Y qué porcentaje tiene una nota mayor o igual que la suya?
+```{r}
+length(which(nota<=4.9))/length(nota)*100
+length(which(nota>=4.9))/length(nota)*100
+which(nota==4.9)
+```
+### 08 Realiza el gráfico de diagramas de caja de las notas de cada grupo, para poder comparar el nivel de cada uno de ellos.
+```{r}
+boxplot(nota ~ grupo)
+```
+### 09 Si la variable conc recoge la concentración de plomo (en ppm) en el aire de cierta zona durante un día completo
+```{r}
+"9.a"
+max(conc)
+```
+```{r}
+"9.b"
+length(which(conc> 40.0))
+```
+```{r}
+"9.c"
+mean(conc)
+```
+```{r}
+"9.d"
+head(sort(conc),10)
+```
+```{r}
+"9.e"
+max(conc)
+conc[47.34]
+which(conc==max(conc))
+288/(24*60)
+# 1 muestra - 5 min
+# 142 es el maximo
+(83-8)/90*60
+```
+## Parte 02
+### 01 Graficar los puntos 
+```{r}
+m <- 1:10
+q <- m^2
+plot(m,q)
+```
+### 02 Ingresar la Matriz A en Rstudio
+```{r}
+matrix(c(1,2,3,2,4,6, 3,6,9,4,8,12),nrow = 4,ncol = 3,byrow = TRUE)
+```
+### 03 Ingresar la matriz identidad de tamaño
+```{r}
+diag(3)
+```
+### 04 Crea una función que cree una matriz nula ingresando las dimensiones
+```{r}
+F4 <- function(n) { I <- diag(n); for(i in 1:n){I[i,i]=0}; return(I)}
+F4(4)
+```
+### 05 Modificar la matriz diag(4), para que se parezca a la matriz B
+```{r}
+D <-diag(4)
+D[1,1] = 0
+D[2,2] = 2
+D[3,3] = 3
+D[4,4] = 4
+D
+```
+### 06 Obtener la matriz transpuesta de A (ejercicio 2
+```{r}
+t(matrix(c(1,2,3,2,4,6, 3,6,9,4,8,12),nrow = 4,ncol = 3,byrow = TRUE))
+```
+### 07 Realizar las siguientes operaciones
+```{r}
+A7 <- matrix(c(1,2,3,4,2,4,6,8,3,6,9,12,0,0,0,0), nrow = 4 , ncol = 4)
+B7 <- matrix(c(0,0,0,0,2,0,0,0,0,3,0,0,0,0,0,4), ncol=4)
+(A7+B7)
+(A7-B7)
+(A7*B7)
+(3*B7)
+```
+### 08 Crea una función para calcular
+```{r}
+F8<-function(M,n){S=M;for(i in 2:n){S=S%*%M};print(S)}
+P <- matrix(c(1,-2,1,2,4,0,3,-2,1), ncol=3, nrow=3)
+F8(P,6)
+```
+### 09 Resolver el sistema de ecuaciones
+```{r}
+A9 = matrix(c(3,9,3,-1,-2,1,1,1,-2), ncol=3,nrow=3)
+x9 <- c(-1,-9,-9)
+solve(A9,x9)
+```
+### 10 Utilizando la ayuda de R, investigue para qué sirven las funciones eigen() y det()
+```{r}
+#eigen #Computes eigenvalues and eigenvectors of numeric 
+        # (double, integer, logical) or complex matrices.
+    
+#det   # det calculates the determinant of a matrix. determinant 
+        # is a generic function that returns separately the modulus 
+        # of the determinant, optionally on the logarithm scale, and 
+        # the sign of the determinant.
+      
+```
+### 11 Considerando las matrices
+```{r}
+M1 <- c(1:10)
+M2 <- seq(2, 20, by = 2)
+M3 <- seq(3, 30, by = 3)
+M4 <- seq(4, 40, by = 4)
+M5 <- seq(5, 50, by = 5)
+B11 = cbind(M1, M2, M3, M4, M5)
+B11
+      
+N1 <- c(0,1,0,0,1)
+N2 <- c(1,0,1,1,0)
+N3 <- c(0,1,0,0,1)
+N4 <- c(1,0,1,0,1)
+N5 <- c(0,1,0,1,0)
+A11 = cbind(N1,N2,N3,N4,N5)
+A11
+B11%*%A11-B11%*%t(A11)
+```
+### 13 Corre el siguiente código para cargar los vectores year y co2 en memoria
+```{r}
+load(url("https://goo.gl/uDzU8v"))
+
+data(co2)
+
+means = aggregate(co2, FUN=mean)
+
+year = as.vector(time(means))
+
+co2 = as.vector(means)
+
+y <- c(0, diff(co2))
+
+plot(year,y, type = "o", pch = 20, xlab = "Años", ylab = "Diferencia de concentración de CO2", 
+
+main = "Diferencias de CO2 entre años consecutivos", col = "blue", font = 2)
+```
+
+```{r}
+
+```
+```{r}
+
+```
+```{r}
+
+```
+```{r}
+
+```
+```{r}
+
+```
+```{r}
+
+```
+```{r}
+
+```
+```{r}
+
+```
+len
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
