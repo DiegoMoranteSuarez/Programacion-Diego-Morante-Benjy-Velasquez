@@ -2,7 +2,7 @@
 title: "Tarea 2 Actividad Grupal"
 author: "Benjy Velasquez Fernandez & Diego Morante Suarez"
 date: "24/11/2021"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -159,7 +159,7 @@ dataset$Pais [which.max(dataset$poblacion)]
 dataset$Pais [which.min(dataset$alfabetizacion)]
 ```
 ### 15. En R hay unas bases de datos incluídas, una de ellas es la base de datos llamada mtcars. Para conocer las variables que están en mtcars usted puede escribir en la consola ?mtcars o también help(mtcars). De la base mtcars obtenga bases de datos que cumplan las siguientes condiciones.
-help("mtcars")
+###help("mtcars")
 
 ```{r}
 mtcars
